@@ -1,0 +1,28 @@
+.logo .ezi {
+    color: #ff9800;
+}
+
+.logo .haraj {
+    color: white;
+}
+.btn-dark {
+    background: transparent;
+    color: white;
+    border: 1px solid white;
+    padding: 6px 10px;
+    border-radius: 20px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.btn-login {
+    background: white;
+    color: #1877f2;
+    border: none;
+    padding: 6px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: bold;
+}

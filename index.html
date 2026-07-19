@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ezharaj - إزي حراج</title>
+    <script>
+        if(localStorage.getItem('darkMode') === 'true') {
+            document.documentElement.classList.add('dark-mode');
+        }
+    </script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f2f5;
+            direction: rtl;
+            padding-bottom: 70px;
+        }
+        
+        /* Top Bar */
+        .top-bar {
+            background: #1877f2;
+            color: white;
+            padding: 6px 15px;
+            overflow: hidden;
+            font-size: 12px;
+            position: relative;
+            height: 50px;
+        }
+        
+        .top-right-btns {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            gap: 5px;
+        }
+        
+        .btn-dark-top {
+            background: transparent;
+            color: white;
+            border: 1px solid white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            font-size: 14px;
+            cursor: pointer;
+            text-align: center;
+            line-height: 26px;
+        }
+        
+        .btn-lang-top {
+            background: white;
+            color: #1877f2;
+            border: none;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .btn-login-top {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: white;
+            color: #1877f2;
+            border: none;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .center-text {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+        
+        .welcome-text {
+            display: block;
+        }
+        
+        .site-url {
+            display: block;
+            font-size: 11px;
+            color: #fff;
+            opacity: 0.9;
+            margin-top: 2px;
+        }
+        
+        /* Header */
+        header {
+            background: #1877f2;
+            color: white;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+        
+        .logo .ezi { color: #ff9800; }
+        .logo .haraj { color: white; }
+        
+        .search-box {
+            flex: 1;
+            position: relative;
+            max-width: 400px;
+        }
+        
+        .search-box input {
+            width: 100%;
+            padding: 10px 15px;
+            border-radius: 25px;
+            border: none;
+            font-size: 14px;
+            background: white;
+            color: #333;
+        }
+        
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .btn-search {
+            background: white;
+            color: #1877f2;
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 16px;
+            text-align: center;
+            line-height: 36px;
+        }
+        
+        .btn-search-lang {
+            background: #ff9800;
+            color: white;
+            border: none;
+            padding: 6px 10px;
+            border-radius: 15px;
+            font-size: 11px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        /* Category Tabs */
+        .cats {
+            background: white;
+            padding: 12px;
+            white-space: nowrap;
+            overflow-x: auto;
+            border-bottom: 1px solid #ddd;
+            display: block;
+        }
+        
+        .cats.hidden {
+            display: none;
+        }
+        
+        .cats button {
+            display: inline-block;
+            padding: 8px 18px;
+            margin: 3px;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            background: white;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .cats button.active {
+            background: #1877f2;
+            color: white;
+            border-color: #1877f2;
+        }
+        
+        /* Sub Categories */
+        .sub-cats {
+            background: #f8f9fa;
+            padding: 10px;
+            white-space: nowrap;
+            overflow-x: auto;
+            border-bottom: 1px solid #ddd;
+            display: none;
+        }
+        
+        .sub-cats.show {
+            display: block;
+        }
+        
+        .sub-cats button {
+            display: inline-block;
+            padding: 6px 14px;
+            margin: 3px;
+            border: 1px solid #ccc;
+            border-radius: 15px;
+            background: white;
+            cursor: pointer;
+            font-size: 13px;
+        }
+        
+        .sub-cats button:hover {
+            background: #1877f2;
+            color: white;
+        }
+        
+        /* Hero Banner */
+        .banner {
+            background: #1877f2;
+            color: white;
+            text-align: center;
+            padding: 35px 20px;
+        }
+        
+        .banner h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        .banner p {
+            font-size: 16px;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+        
+        .btn-green {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 14px 30px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        /* Filter Section */
+        .filter-box {
+            background: white;
+            padding: 20px;
+            margin: 15px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        
+        .filter-box h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+        
+        .filter-box p {
+            color: #888;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        
+        .filter-btns button {
+            padding: 8px 20px;
+            margin: 5px;
+            border: 1px solid #1877f2;
+            border-radius: 20px;
+            background: white;
+            color: #1877f2;
+            cursor: pointer;
+        }
+        
+        /* Items */
+        .items-box {
+            padding: 15px;
+        }
+        
+        .item-card {
+            background: white;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .item-img {
+            width: 100%;
+            height: 200px;
+            background: #eee;
+            position: relative;
+        }
+        
+        .badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: #ff9800;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 12px;
+        }
+        
+        .fav-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 40px;
+            height: 40px;
+            background: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        
+        .item-info {
+            padding: 15px;
+            text-align: right;
+        }
+        
+        .item-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        
+        .item-price {
+            color: #1877f2;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+        /* Bottom Nav */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            border-top: 1px solid #ddd;
+            display: flex;
+            justify-content: space-around;
+            padding: 8px 0;
+            z-index: 100;
+        }
+        
+        .nav-item {
+            text-align: center;
+            color: #888;
+            font-size: 12px;
+            cursor: pointer;
+        }
+        
+        .nav-item.active {
+            color: #1877f2;
+        }
+        
+        .nav-icon {
+            font-size: 24px;
+            margin-bottom: 3px;
+        }
+        
+        /* Add Button Float */
+        .add-float {
+            position: fixed;
+            bottom: 80px;
+            left: 20px;
+            width: 55px;
+            height: 55px;
+            background: #1877f2;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 55px;
+            font-size: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            z-index: 99;
+        }
+        
+        /* Dark Mode */
+        .dark-mode body {
+            background: #1a1a1a;
+            color: #fff;
+        }
+        
+        .dark-mode .top-bar,
+        .dark-mode header,
+        .dark-mode .banner {
+            background: #1565c0;
+        }
+        
+        .dark-mode .search-box input {
+            background: #2d2d2d;
+            color: #fff;
+        }
+        
+        .dark-mode .btn-search {
+            background: #2d2d2d;
+            color: #42a5f5;
+        }
+        
+        .dark-mode .btn-search-lang {
+            background: #e65100;
+            color: #fff;
+        }
+        
+        .dark-mode .btn-lang-top {
+            background: #2d2d2d;
+            color: #42a5f5;
+        }
+        
+        .dark-mode .btn-login-top {
+            background: #2d2d2d;
+            color: #42a5f5;
+        }
+        
+        .dark-mode .cats,
+        .dark-mode .filter-box,
+        .dark-mode .item-card,
+        .dark-mode .bottom-nav {
+            background: #2d2d2d;
+            color: #fff;
+        }
+        
+        .dark-mode .cats button {
+            background: #3d3d3d;
+            color: #fff;
+            border-color: #555;
+        }
+        
+        .dark-mode .cats button.active {
+            background: #1877f2;
+            color: white;
+        }
+        
+        .dark-mode .sub-cats {
+            background: #1a1a1a;
+        }
+        
+        .dark-mode .sub-cats button {
+            background: #3d3d3d;
+            color: #fff;
+            border-color: #555;
+        }
+        
+        .dark-mode .item-info {
+            color: #fff;
+        }
+        
+        .dark-mode .nav-item {
+            color: #888;
+        }
+        
+        .dark-mode .nav-item.active {
+            color: #42a5f5;
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="top-right-btns">
+            <button class="btn-dark-top" onclick="toggleDark()">🌙</button>
+            <button class="btn-lang-top" onclick="changeLang()">عربي</button>
+        </div>
+        <div class="center-text">
+            <span class="welcome-text">🎉 أهلاً بك في إزي حراج!</span>
+            <span class="site-url">www.ezharaj.com</span>
+        </div>
+        <button class="btn-login-top" onclick="goLogin()">🔐 دخول</button>
+    </div>
+    
+    <!-- Header -->
+    <header>
+        <div class="header-right">
+            <div class="logo"><span class="ezi">إزي</span> <span class="haraj">حراج</span></div>
+        </div>
+        <div class="search-box">
+            <input type="text" placeholder="ابحث..." id="searchInput">
+        </div>
+        <div class="header-left">
+            <button class="btn-search" onclick="search()">🔍</button>
+            <button class="btn-search-lang" onclick="changeSearchLang()">عربي</button>
+        </div>
+    </header>
+    
+    <!-- Main Categories -->
+    <div class="cats" id="mainCats">
+        <button class="active" onclick="showCategory('all', this)">🏠 الكل</button>
+        <button onclick="showCategory('cars', this)">🚗 سيارات</button>
+        <button onclick="showCategory('devices', this)">📱 أجهزة</button>
+        <button onclick="showCategory('real estate', this)">🏠 عقارات</button>
+        <button onclick="showCategory('furniture', this)">🪑 أثاث</button>
+        <button onclick="showCategory('services', this)">🔧 خدمات</button>
+        <button onclick="showCategory('fashion', this)">👕 أزياء</button>
+        <button onclick="showCategory('animals', this)">🐪 حيوانات</button>
+        <button onclick="showCategory('jobs', this)">💼 وظائف</button>
+        <button onclick="showCategory('games', this)">🎮 ألعاب</button>
+        <button onclick="showCategory('training', this)">📚 تدريب</button>
+        <button onclick="showCategory('food', this)">🍔 أطعمة</button>
+        <button onclick="showCategory('events', this)">🎉 مناسبات</button>
+        <button onclick="showCategory('programming', this)">💻 برمجة</button>
+        <button onclick="showCategory('garden', this)">🌳 حدائق</button>
+        <button onclick="showCategory('rare', this)">🏺 نوادر</button>
+        <button onclick="showCategory('investments', this)">📈 مشاريع</button>
+        <button onclick="showCategory('arts', this)">🎨 فنون</button>
+        <button onclick="showCategory('trips', this)">✈️ رحلات</button>
+        <button onclick="showCategory('tourism', this)">🏖️ سياحة</button>
+        <button onclick="showCategory('lost', this)">🔍 مفقودات</button>
+    </div>
+    
+    <!-- Sub Categories -->
+    <div class="sub-cats" id="subCats"></div>
+    
+    <!-- Banner -->
+    <div class="banner">
+        <h1>بيع واشتري بكل سهولة</h1>
+        <p>أكبر منصة إعلانات مبوبة في المملكة</p>
+        <button class="btn-green">📢 أنشر إعلانك مجاناً</button>
+    </div>
+    
+    <!-- Filter -->
+    <div class="filter-box">
+        <h3>👈 اسحب للتصفح</h3>
+        <p>تصفح أحدث الإعلانات المضافة</p>
+        <div class="filter-btns">
+            <button onclick="sortItems('latest')">الأحدث</button>
+            <button onclick="sortItems('cheapest')">الأرخص</button>
+            <button onclick="sortItems('expensive')">الأغلى</button>
+        </div>
+    </div>
+    
+    <!-- Items -->
+    <div class="items-box" id="itemsContainer"></div>
+    
+    <!-- Add Button -->
+    <div class="add-float" onclick="goAdd()">+</div>
+    
+    <!-- Bottom Nav -->
+    <nav class="bottom-nav">
+        <div class="nav-item active" onclick="goHome()">
+            <div class="nav-icon">🏠</div>
+            <div>الرئيسية</div>
+        </div>
+        <div class="nav-item" onclick="toggleCategories()">
+            <div class="nav-icon">📂</div>
+            <div>الأقسام</div>
+        </div>
+        <div class="nav-item" onclick="goAdd()">
+            <div class="nav-icon">➕</div>
+            <div>أضف</div>
+        </div>
+        <div class="nav-item" onclick="goFavorites()">
+            <div class="nav-icon">❤️</div>
+            <div>المفضلة</div>
+        </div>
+        <div class="nav-item" onclick="goAccount()">
+            <div class="nav-icon">👤</div>
+            <div>حسابي</div>
+        </div>
+    </nav>
+    
+    <script src="data/items.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

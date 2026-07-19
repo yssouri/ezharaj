@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل جديد - إزي حراج</title>
+    <script>
+        if(localStorage.getItem('darkMode') === 'true') {
+            document.documentElement.classList.add('dark-mode');
+        }
+    </script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f2f5;
+            direction: rtl;
+            padding: 20px;
+        }
+        
+        .register-box {
+            max-width: 400px;
+            margin: 50px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .register-box h2 {
+            text-align: center;
+            color: #28a745;
+            margin-bottom: 25px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-size: 14px;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        
+        .btn-register {
+            width: 100%;
+            padding: 14px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        
+        .links {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+        
+        .links a {
+            color: #1877f2;
+            text-decoration: none;
+        }
+        
+        .back-btn {
+            text-align: center;
+            margin-top: 15px;
+        }
+        
+        .back-btn a {
+            color: #888;
+            text-decoration: none;
+        }
+        
+        /* Dark Mode */
+        .dark-mode body {
+            background: #1a1a1a !important;
+            color: #fff !important;
+        }
+        
+        .dark-mode .register-box {
+            background: #2d2d2d !important;
+            color: #fff !important;
+        }
+        
+        .dark-mode .form-group label {
+            color: #aaa !important;
+        }
+        
+        .dark-mode .form-group input {
+            background: #3d3d3d !important;
+            color: #fff !important;
+            border-color: #555 !important;
+        }
+        
+        .dark-mode .links a,
+        .dark-mode .back-btn a {
+            color: #42a5f5 !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="register-box">
+        <h2>📝 تسجيل جديد</h2>
+        <div class="form-group">
+            <label>الاسم الكامل</label>
+            <input type="text" placeholder="أدخل اسمك">
+        </div>
+        <div class="form-group">
+            <label>رقم الجوال</label>
+            <input type="text" placeholder="أدخل رقم جوالك">
+        </div>
+        <div class="form-group">
+            <label>البريد الإلكتروني</label>
+            <input type="email" placeholder="أدخل بريدك">
+        </div>
+        <div class="form-group">
+            <label>كلمة المرور</label>
+            <input type="password" placeholder="أدخل كلمة المرور">
+        </div>
+        <div class="form-group">
+            <label>تأكيد كلمة المرور</label>
+            <input type="password" placeholder="أعد إدخال كلمة المرور">
+        </div>
+        <button class="btn-register" onclick="register()">تسجيل</button>
+        <div class="links">
+            <a href="login.html">لديك حساب؟ سجل دخول</a>
+        </div>
+        <div class="back-btn">
+            <a href="index.html">← الرجوع للرئيسية</a>
+        </div>
+    </div>
+    
+    <script>
+        function register() {
+            alert('تم التسجيل بنجاح!');
+            window.location.href = 'login.html';
+        }
+    </script>
+</body>
+</html>
